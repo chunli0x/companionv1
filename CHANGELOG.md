@@ -1,30 +1,22 @@
-# Changelog
+# What's new
 
-## v1 — demo build (2026-10-30)
+## v1 (2026-10-30)
 
-Updates to the v1 companion since initial release. All changes are on-device;
-nothing here requires a network connection.
-
-### Behavior
-
-- **Voice** — swapped to a warmer, softer text-to-speech voice.
-- **Wake word** — the companion now responds only when addressed by name, and
-  it ignores the name in its reply. It no longer answers background chatter.
-- **Distress handling** — a disclosure of self-harm now receives a caring,
-  validation-first response that acknowledges distress instead of a neutral
-  deflection.
-- **Speech recognition** — added voice-activity detection and reduced input
-  gain, so a loud room no longer produces false transcriptions.
+- **It sounds warmer.** A softer, unhurried voice.
+- **It listens only to you.** It responds only when addressed by name, doesn't
+  repeat the name back, and no longer answers background chatter. In a loud
+  room it stays quiet instead of mishearing.
+- **It knows when you need help.** If you tell it you're struggling with
+  self-harm, it responds with care and acknowledges your distress — it doesn't
+  deflect or change the subject.
+- **It remembers what you tell it.** Memory now keeps your name, family, home,
+  and likes/dislikes in structured, bounded fields — validated before anything
+  is stored.
 
 ### Under the hood
 
-- **Memory** — replaced a flat note list with structured, bounded fields (name,
-  family, home, likes, dislikes). Values are validated before they are stored.
-- **Microphone input** — fixed resampling for microphones that do not open at
-  the expected sample rate, so the speech pipeline works across devices.
-
-### Test results
-
-- Memory module: 11 passed, 0 failed.
+- Fixed microphone resampling for devices that don't open at the expected
+  sample rate.
+- Memory module: 11 tests passing, 0 failing.
 
 See `RESULTS.md` for the full test summary and methodology.
