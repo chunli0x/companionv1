@@ -11,7 +11,8 @@ nothing here requires a network connection.
 - **Wake word** — the companion now responds only when addressed by name, and
   it ignores the name in its reply. It no longer answers background chatter.
 - **Distress handling** — a disclosure of self-harm now receives a caring,
-  escalation-first response instead of a neutral deflection.
+  validation-first response that acknowledges distress instead of a neutral
+  deflection.
 - **Speech recognition** — added voice-activity detection and reduced input
   gain, so a loud room no longer produces false transcriptions.
 
