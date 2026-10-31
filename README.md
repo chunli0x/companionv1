@@ -1,7 +1,9 @@
 # Companion
 
-An offline, on-device voice companion. It listens, generates a reply, checks
-it, and speaks — entirely on local hardware, with no network connection.
+An offline, on-device AI pet. It listens, generates a reply, checks it, and
+speaks — entirely on local hardware, with no network connection.
+
+Website: [offline.pet](https://offline.pet)
 
 ## Pipeline
 
