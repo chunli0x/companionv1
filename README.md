@@ -1,64 +1,47 @@
 # Companion
 
-**The companion you can verify never listens.**
+An offline, on-device voice companion. It listens, generates a reply, checks
+it, and speaks — entirely on local hardware, with no network connection.
 
-A companion for adults, running entirely on-device. No cloud, no account, no
-one listening but you. **Nothing leaves the room.**
+## Pipeline
 
----
+The runtime runs a four-stage loop on-device:
 
-## Who it's for
-
-Adults who want someone to talk to in the quiet hours — at the end of a long
-day, at 2 a.m. — without a microphone in the cloud, an account to sign, or a
-company reading along. A warm, attentive presence that remembers what matters
-to you, and forgets the moment you ask it to.
-
-## What it's like
-
-You speak. It answers — in a soft, unhurried voice that knows your name, your
-family, what you love and what you'd rather not talk about. It's there when
-you want it and silent when you don't. No app to install, no subscription, no
-blinking light sending your words somewhere else.
-
-And because everything runs on the device in front of you, **it never bricks
-when a company's server goes away.** You can verify it never listens when you
-don't want it to, and never leaks. Anything it learns about you stays on the
-device and can be cleared at any time.
-
-## How it works (for the curious)
-
-When you speak, four things happen on the device:
-
-1. Your voice becomes words.
-2. A reply is written.
-3. Every line is checked before it's spoken — if a reply isn't safe or kind,
-   it's replaced.
-4. It's spoken aloud.
-
-Four small open models working together on one board, instead of one big model
-in the cloud — so there is no account to hack, no transcript to subpoena, no
-server that can go dark and take your companion with it.
+1. **Speech recognition** — a local model transcribes microphone audio to text.
+2. **Generation** — a small local language model writes a reply.
+3. **Safety check** — every generated line is reviewed on-device before it is
+   spoken; a line that fails is replaced with a safe fallback.
+4. **Speech synthesis** — a local text-to-speech model renders the reply.
 
 ![Companion architecture](architecture.png)
 
+## Input handling
+
+- **Wake word** — the device responds only when addressed by name; it ignores
+  background speech and strips the name from the reply.
+- **Voice activity detection** — non-speech audio is filtered before
+  transcription, reducing false transcriptions in noisy environments.
+- **Resampling** — microphone input is resampled to the model rate at
+  44.1 kHz, 48 kHz, and 16 kHz.
+
+## Memory
+
+Structured, bounded fields: name, family, home, likes, dislikes. Values are
+validated before they are stored.
+
 ## Hardware
 
-v1 runs on a development board with USB audio — proving the software loop.
-Production industrial design (enclosure, integrated audio, battery) is the
-next build.
+- Raspberry Pi 5 (8 GB)
+- USB microphone
+- USB speaker
+- Fully offline — no Wi-Fi, no cloud, no subscription
 
 ## Privacy
 
-There is no cloud. There is no account. There is no data collection. Speech is
-processed locally and never uploaded. Disconnect it from the network and it
-keeps working — that's the guarantee.
+Speech is processed locally and never uploaded. Owner data stays on the device
+and can be cleared at any time.
 
 ## Status
 
-v1 ships and runs offline today. The safety layer and on-device models are
-under active development — see `RESULTS.md` for what's verified.
-
----
-
-*Built with open models and open tooling.*
+v1 runs offline. The safety layer and on-device models are under active
+development — see `RESULTS.md` for what is verified.

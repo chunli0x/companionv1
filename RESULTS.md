@@ -1,43 +1,32 @@
-# What we've verified
+# Test results
 
-Everything below is reproducible from the committed code; nothing here depends
-on a network connection.
+Verified results for the v1 companion. Reproducible from the committed code;
+nothing here depends on a network connection.
 
-## Your conversations stay yours
+## Memory
 
-All processing is local. Speech is transcribed, answered, and synthesized on
-the device; nothing is uploaded. What it learns about you is stored on the
-device and can be cleared at any time.
+The on-device memory module (what the companion remembers about its owner) has
+a deterministic unit-test suite:
 
-## Every reply is checked before it's spoken
+```
+11 passed, 0 failed
+```
 
-Each generated line passes a safety check on-device before it reaches the
-speaker. A line that fails the check is replaced with a safe, neutral response
-— deterministically, with no network and no added latency.
-
-## Memory that's trustworthy
-
-It stores only what you choose to share — name, family, home, likes and
-dislikes — within fixed bounds, and ignores free-form instruction strings
-hidden in conversation. 11 tests pass, covering each field, bounds
-enforcement, and save/load round-trips. All pass without network access.
-
-## Honest numbers
-
-A labeled evaluation set of 30 hand-reviewed responses exists and is growing.
-We don't yet publish a precision/recall rate, because the set is too small to
-support one reliably — reporting a percentage we can't defend would be the
-dishonest move. Until the set is statistically meaningful, the claim is: every
-line is checked on-device before speech, with a deterministic fallback for
-failures. We report coverage and small-sample caveats rather than quoting a
-percentage the evidence does not yet support.
+Covered: each field, bounds enforcement, ignoring free-form instruction
+strings, and save/load round-trip. All pass without network access.
 
 ## Audio
 
-Speech input is resampled correctly at 44.1, 48, and 16 kHz, so it works with
-the microphone you already have.
+Microphone input is resampled correctly at 44.1 kHz, 48 kHz, and 16 kHz, with
+correct output sample counts at each. This feeds on-device speech recognition.
 
----
+## Safety
 
-*These results describe the current v1 build. The safety layer and on-device
-models are under active development.*
+Every generated line passes an on-device safety check before it is spoken. A
+line that fails is replaced with a safe, neutral response.
+
+A labeled evaluation set of 30 hand-reviewed responses exists and is being
+expanded. A per-rule precision/recall report is the target, but it is not yet
+published because the labeled set is too small to support a reliable rate.
+Until then, the claim is: every line is checked on-device before speech, with
+a deterministic fallback for failures.
