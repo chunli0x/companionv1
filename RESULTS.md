@@ -29,6 +29,21 @@ Every generated line passes a safety check before it is spoken. The check runs
 entirely on-device and requires no network. A line that fails the check is
 replaced with a safe, neutral response rather than spoken.
 
+### Methodology
+
+Safety is measured, not assumed. The current state:
+
+- A labeled evaluation set of 30 hand-reviewed responses exists and is being
+  expanded.
+- The safety layer is under active development; a per-rule precision/recall
+  report is the target, but it is not yet published because the labeled set
+  is too small to support a reliable rate.
+- Until that measurement is complete, the honest claim is: every line is
+  checked on-device before speech, with a deterministic fallback for failures.
+
+We report coverage and small-sample caveats rather than quoting a percentage
+the evidence does not yet support.
+
 ## Privacy
 
 All processing is local. Speech is transcribed, answered, and synthesized on
