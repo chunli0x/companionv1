@@ -5,14 +5,17 @@ thinks, and speaks entirely on-device. Nothing leaves the room.
 
 ## What it is
 
-- **Listens** — a local speech-to-text model turns your voice into words.
-- **Thinks** — a small on-device language model writes a reply.
-- **Checks** — every line passes a safety layer before it is spoken.
-- **Speaks** — a local text-to-speech model says it out loud.
+The companion runs four small models, all on-device:
 
-There is no cloud. There is no account. There is no data collection. The
-entire loop — hearing, generating, checking, speaking — runs on the hardware
-in front of you, with no network connection required.
+1. **Hears** — a local speech-recognition model turns your voice into words.
+2. **Thinks** — a small on-device language model writes a reply.
+3. **Checks** — a safety model reviews every line before it is spoken.
+4. **Speaks** — a local text-to-speech model says it out loud.
+
+Four small open models working together on one board, instead of one big model
+in the cloud. There is no cloud. There is no account. There is no data
+collection. The entire loop — hearing, thinking, checking, speaking — runs on
+the hardware in front of you, with no network connection required.
 
 ## Architecture
 
