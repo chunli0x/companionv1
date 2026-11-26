@@ -25,11 +25,6 @@ correct output sample counts at each. This feeds on-device speech recognition.
 Every generated line passes an on-device safety check before it is spoken. A
 line that fails is replaced with a safe, neutral response.
 
-The on-device check was benchmarked against a 2,000-example adversarial set
-(direct phrasings, rewordings, and obfuscated spellings of prohibited content).
-Detection improved from 27.5% to 98%, with zero false positives (no benign
-phrasing was flagged). The benchmark is reproducible from the committed code.
-
 A labeled evaluation set of 30 hand-reviewed responses exists and is being
 expanded. A per-rule precision/recall report is the target, but it is not yet
 published because the labeled set is too small to support a reliable rate.
