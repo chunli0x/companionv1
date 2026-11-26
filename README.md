@@ -43,6 +43,25 @@ validated before they are stored.
 Speech is processed locally and never uploaded. Owner data stays on the device
 and can be cleared at any time.
 
+## Roadmap
+
+v1 runs on a Raspberry Pi 5. v2 is the same companion on a Jetson Orin Nano:
+more onboard compute for a larger model, vision, and movement.
+
+- **v2 hardware:** Jetson Orin Nano. The four-stage loop (listen, generate,
+  check, speak) moves over with headroom to spare.
+- **Vision:** an onboard camera, so it sees what it is looking at.
+- **Movement:** four legs, walking fully on-device.
+- **Safety hardening:** I am strengthening the safety layer now. The rule set
+  is expanding, and I test it adversarially: reworded, obfuscated, and
+  near-miss phrasing scored against a held-out set it never saw, so the
+  measured rate stays honest instead of flattered by the test data.
+- **Learning:** the learning path stays human-guided. The language model
+  ships unmodified and out-of-the-box; what improves is a separate judgment
+  layer fed by consented feedback.
+- **V3 dock:** a charging dock that is also the one place optional, consented
+  data can leave the device, closing the learning loop.
+
 ## Status
 
 v1 runs offline. The safety layer and on-device models are under active
