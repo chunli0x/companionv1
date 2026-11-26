@@ -52,10 +52,9 @@ more onboard compute for a larger model, vision, and movement.
   check, speak) moves over with headroom to spare.
 - **Vision:** an onboard camera, so it sees what it is looking at.
 - **Movement:** four legs, walking fully on-device.
-- **Safety hardening:** I am strengthening the safety layer now. The rule set
-  is expanding, and I test it adversarially: reworded, obfuscated, and
-  near-miss phrasing scored against a held-out set it never saw, so the
-  measured rate stays honest instead of flattered by the test data.
+- **Safety hardening:** I am strengthening the safety layer. The rule set
+  is expanding, and I test it against reworded, obfuscated, and near-miss
+  phrasing, scored on a set it was not trained on.
 - **Learning:** the learning path stays human-guided. The language model
   ships unmodified and out-of-the-box; what improves is a separate judgment
   layer fed by consented feedback.
